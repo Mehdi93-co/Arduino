@@ -18,9 +18,20 @@ void setup()
    */
 
   SPIClass SPI;
-  SPISettings mySettings(20000000, MSBFIRST, SPI_MODE0);
+  SPISettings mySettings(SPI_CLOCK_DIV2, MSBFIRST, SPI_MODE0);
   digitalWrite(SS, HIGH);
   SPI.beginTransaction(mySettings);
+  SPI.begin();
+
+  // Print the SPI-Pins to the Serial Port
+  Serial.println("[INFO] MISO: ");
+  Serial.println(MISO);
+  Serial.println("[INFO] SCLK: ");
+  Serial.println(SCK);
+  Serial.println("[INFO] MOSI: ");
+  Serial.println(MOSI);
+  Serial.println("[INFO] CS: ");
+  Serial.println(SS);
 }
 
 void loop()
@@ -31,18 +42,21 @@ void loop()
   digitalWrite(user_Led, 0);
   delay(100);
 
-  byte spi_data_send = 0XFF;
-  byte spi_data_receive;
+  uint8_t spi_data_send = 0XFF;
+  uint8_t spi_data_receive = 0x00;
   digitalWrite(SS, LOW);
   Serial.println("Chip Select is Low\n");
   spi_data_receive = SPI.transfer(spi_data_send);
+  digitalWrite(SS, HIGH);
 
-  if (spi_data_receive == 0x0F)
+  if (spi_data_receive == 0xFF)
   {
     digitalWrite(user_Led, HIGH);
-    delay(100);
+    delay(1000);
     digitalWrite(user_Led, 0);
+    delay(1000);
     Serial.println("Data was received\n");
+    spi_data_receive = 0x00;
   }
   delay(1000);
 }
