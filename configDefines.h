@@ -1,0 +1,26 @@
+#define cmdTypeSet_HP 0
+#define cmdTypeGet_HP 1
+#define cmdTypeSet_LShlv 2
+#define cmdTypeGet_LShlv 3
+#define cmdTypeSet_PEQ 4
+#define cmdTypeGet_PEQ 5
+#define cmdTypeSet_HShlv 6
+#define cmdTypeGet_HShlv 7
+#define cmdTypeSet_LP 8
+#define cmdTypeGet_LP 9
+#define cmdTypeSet_Phase 10
+#define cmdTypeGet_Phase 11
+#define cmdTypeSet_Delay 12
+#define cmdTypeGet_Delay 13
+#define cmdTypeSet_Gain 14
+#define cmdTypeGet_Gain 15
+#define cmdTypeSet_Volume 16
+#define cmdTypeGet_Volume 17
+#define cmdTypeSet_Preset 18
+#define cmdTypeGet_Preset 19
+
+#define NOERROR 0
+#define ERROR 1
+#define HPSet_ERROR 0
+#define HPGet_ERROR 1 
+#define HshelvSet_ERROR 2
